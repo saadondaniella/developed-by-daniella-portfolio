@@ -138,7 +138,7 @@
             <p class="block-sub">A few things I’ve built and deployed during my studies.</p>
         </div>
 
-        <div class="projects-grid">
+        <div class="projects-grid" id="projects-content">
             <?php foreach ($projects as $project): ?>
                 <div class="project-card">
                     <h3 class="project-title"><?= e($project['name']); ?></h3>
@@ -167,65 +167,73 @@
                 </div>
             <?php endforeach; ?>
         </div>
-    </section>
 
-    <section class="block" id="contact">
-        <div class="block-head">
-            <h2 class="block-title">Contact</h2>
-        </div>
+        <button
+            class="projects-toggle"
+            type="button"
+            aria-controls="projects-content"
+            aria-expanded="false">
+            Show more
+        </button>
 
-        <div class="contact-panel contact-panel-fancy">
-            <div class="contact-headline">
 
-                <div class="contact-title-row">
-                    <!-- <p class="contact-big">How to find me</p> -->
-                    <!-- <span class="contact-status" aria-label="Availability status">
+        <section class="block" id="contact">
+            <div class="block-head">
+                <h2 class="block-title">Contact</h2>
+            </div>
+
+            <div class="contact-panel contact-panel-fancy">
+                <div class="contact-headline">
+
+                    <div class="contact-title-row">
+                        <!-- <p class="contact-big">How to find me</p> -->
+                        <!-- <span class="contact-status" aria-label="Availability status">
                             <span class="contact-status-dot" aria-hidden="true"></span>
                             Open to opportunities
                         </span> -->
+                    </div>
+                </div>
+
+                <div class="contact-grid contact-grid-fancy">
+                    <a class="contact-card contact-card-email contact-card-fancy" href="mailto:<?= e($site['email']); ?>">
+                        <div class="contact-card-top">
+                            <span class="contact-kicker">Email</span>
+                            <span class="contact-icon" aria-hidden="true">✉</span>
+                        </div>
+
+                        <span class="contact-main"><?= e($site['email']); ?></span>
+                        <span class="contact-cta">Write →</span>
+                    </a>
+
+                    <a class="contact-card contact-card-linkedin contact-card-fancy" href="<?= e($site['linkedin']); ?>" target="_blank" rel="noreferrer">
+                        <div class="contact-card-top">
+                            <span class="contact-kicker">LinkedIn</span>
+                            <span class="contact-icon" aria-hidden="true">in</span>
+                        </div>
+
+                        <span class="contact-main">Connect</span>
+                        <span class="contact-cta">Open →</span>
+                    </a>
+
+                    <a class="contact-card contact-card-github contact-card-fancy" href="<?= e($site['github']); ?>" target="_blank" rel="noreferrer">
+                        <div class="contact-card-top">
+                            <span class="contact-kicker">GitHub</span>
+                            <span class="contact-icon" aria-hidden="true">⌘</span>
+                        </div>
+
+                        <span class="contact-main">See work</span>
+                        <span class="contact-cta">Open →</span>
+                    </a>
                 </div>
             </div>
 
-            <div class="contact-grid contact-grid-fancy">
-                <a class="contact-card contact-card-email contact-card-fancy" href="mailto:<?= e($site['email']); ?>">
-                    <div class="contact-card-top">
-                        <span class="contact-kicker">Email</span>
-                        <span class="contact-icon" aria-hidden="true">✉</span>
-                    </div>
-
-                    <span class="contact-main"><?= e($site['email']); ?></span>
-                    <span class="contact-cta">Write →</span>
-                </a>
-
-                <a class="contact-card contact-card-linkedin contact-card-fancy" href="<?= e($site['linkedin']); ?>" target="_blank" rel="noreferrer">
-                    <div class="contact-card-top">
-                        <span class="contact-kicker">LinkedIn</span>
-                        <span class="contact-icon" aria-hidden="true">in</span>
-                    </div>
-
-                    <span class="contact-main">Connect</span>
-                    <span class="contact-cta">Open →</span>
-                </a>
-
-                <a class="contact-card contact-card-github contact-card-fancy" href="<?= e($site['github']); ?>" target="_blank" rel="noreferrer">
-                    <div class="contact-card-top">
-                        <span class="contact-kicker">GitHub</span>
-                        <span class="contact-icon" aria-hidden="true">⌘</span>
-                    </div>
-
-                    <span class="contact-main">See work</span>
-                    <span class="contact-cta">Open →</span>
-                </a>
             </div>
-        </div>
+        </section>
 
-        </div>
-    </section>
-
-    <footer class="footer">
-        <p>© <?= e((string)date('Y')); ?> <?= e($site['name']); ?></p>
-        <button class="top" type="button">Top ↑</button>
-    </footer>
+        <footer class="footer">
+            <p>© <?= e((string)date('Y')); ?> <?= e($site['name']); ?></p>
+            <button class="top" type="button">Top ↑</button>
+        </footer>
 </main>
 
 <dialog class="doc-dialog" id="cover-letter-dialog">

@@ -81,18 +81,6 @@
     font-size: 1.3rem;
   }
 
-  .projects-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 16px;
-  }
-
-  .contact-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .contact-grid-fancy {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
   .education-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -102,6 +90,23 @@
 
   .education-grid .note {
     height: 100%;
+  }
+
+  .projects-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  .projects-toggle {
+    display: none;
+  }
+
+  .contact-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .contact-grid-fancy {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   .cover-letter {

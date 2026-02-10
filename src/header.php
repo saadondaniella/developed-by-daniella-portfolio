@@ -27,6 +27,7 @@ $coverLetter = require __DIR__ . '/../data/cover-letter.php';
 
     <link rel="stylesheet" href="public/style-header.css?v=2026" />
     <link rel="stylesheet" href="public/style-desktop.css?v=2026" />
+    <link rel="stylesheet" href="public/contact-footer.css?v=2026" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

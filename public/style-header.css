@@ -34,7 +34,8 @@ img {
   content: "";
   position: absolute;
   inset: -20%;
-  background: radial-gradient(
+  background:
+    radial-gradient(
       1200px 700px at 15% 15%,
       rgba(183, 156, 255, 0.26),
       transparent 55%
@@ -97,6 +98,33 @@ img {
     transform: translate3d(0, 0, 0) rotate(2deg) scale(1);
   }
 }
+@keyframes shimmerFade {
+  0% {
+    opacity: 0.55;
+    filter: blur(24px);
+  }
+  35% {
+    opacity: 0.12; /* nästan borta */
+    filter: blur(34px);
+  }
+  55% {
+    opacity: 0.42;
+    filter: blur(22px);
+  }
+  100% {
+    opacity: 0.55;
+    filter: blur(24px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bg-blob {
+    animation: none;
+  }
+  .bg::before {
+    animation: none;
+  }
+}
 
 .bg-blob {
   position: absolute;
@@ -105,30 +133,43 @@ img {
   filter: blur(24px);
   opacity: 0.5;
   mix-blend-mode: multiply;
+
   transform: translate3d(var(--px, 0px), var(--py, 0px), 0);
   transition: transform 220ms ease;
-  animation: float 10s ease-in-out infinite;
+
+  animation:
+    float 10s ease-in-out infinite,
+    shimmerFade 14s ease-in-out infinite;
 }
 
 .bg-blob-orange {
   background: var(--orange);
   left: -180px;
   top: -180px;
-  animation-delay: 0s;
+  animation-delay:
+    0s,
+    -3s;
+  animation-duration: 10s, 16s;
 }
 
 .bg-blob-lavender {
   background: var(--lav);
   right: -220px;
   top: 90px;
-  animation-delay: -2s;
+  animation-delay:
+    -2s,
+    -8s;
+  animation-duration: 12s, 18s;
 }
 
 .bg-blob-blue {
   background: var(--blue);
   left: 18%;
   bottom: -240px;
-  animation-delay: -4s;
+  animation-delay:
+    -4s,
+    -1s;
+  animation-duration: 11s, 15s;
 }
 
 @keyframes float {
@@ -138,7 +179,7 @@ img {
   50% {
     transform: translate3d(
         calc(var(--px, 0px) + 38px),
-        calc(var(--py, 0px) - 18px),
+        calc(var(--py, 0px) - 25px),
         0
       )
       scale(1.06);
@@ -195,7 +236,9 @@ img {
   font-size: 1rem;
   letter-spacing: -0.02em;
   opacity: 0.78;
-  transition: opacity 140ms ease, transform 140ms ease;
+  transition:
+    opacity 140ms ease,
+    transform 140ms ease;
 }
 
 .topnav-link:hover {
@@ -227,7 +270,10 @@ img {
   padding: 10px 14px;
   cursor: pointer;
   box-shadow: 0 10px 22px rgba(11, 11, 16, 0.08);
-  transition: transform 140ms ease, box-shadow 140ms ease, background 140ms ease;
+  transition:
+    transform 140ms ease,
+    box-shadow 140ms ease,
+    background 140ms ease;
 }
 
 .menu-label {
@@ -280,7 +326,10 @@ img {
   height: 2px;
   background: var(--ink);
   border-radius: 999px;
-  transition: transform 160ms ease, top 160ms ease, bottom 160ms ease;
+  transition:
+    transform 160ms ease,
+    top 160ms ease,
+    bottom 160ms ease;
 }
 
 .menu-icon::before {
@@ -333,7 +382,10 @@ img {
   transform: translateY(-8px) scale(0.985);
   pointer-events: none;
   filter: blur(2px);
-  transition: opacity 180ms ease, transform 180ms ease, filter 180ms ease;
+  transition:
+    opacity 180ms ease,
+    transform 180ms ease,
+    filter 180ms ease;
 }
 
 .menu.is-open {
@@ -369,7 +421,9 @@ img {
   font-weight: 900;
   letter-spacing: -0.02em;
   background: rgba(255, 255, 255, 0.65);
-  transition: transform 140ms ease, background 140ms ease;
+  transition:
+    transform 140ms ease,
+    background 140ms ease;
 }
 
 .menu-link:hover {

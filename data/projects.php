@@ -4,6 +4,14 @@ declare(strict_types=1);
 
 return [
     [
+        'name' => 'Couples Therapy – Memory Game',
+        'url' => 'https://couples-therapy-oyua.onrender.com/',
+        'repo' => 'https://github.com/Timalm90/Couples-Therapy.git',
+        'description' => 'A collaborative multiplayer memory game built with Node.js. The project uses a WebSocket-based server for real-time game state management, turn handling and scoring logic, combined with a responsive client interface and a 3D game board implemented using the Three.js API.',
+        'tech' => 'NODE.JS • JAVASCRIPT • WEBSOCKETS • THREE.JS • HTML • CSS • RESPONSIVE UI',
+
+    ],
+    [
         'name' => 'Yrgopelag - Hotel booking app',
         'url' => 'https://developedbydaniella.se/yrgopelag/',
         'repo' => 'https://github.com/saadondaniella/theWhiteLotus-yrgopelag',

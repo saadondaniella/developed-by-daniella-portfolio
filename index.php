@@ -67,11 +67,24 @@ require __DIR__ . '/src/header.php';
 
         <div class="note note-white">
             <h3 class="note-title">A little thing about me..</h3>
-            <p class="note-text">
-                I’m 37 and not afraid of making big life changes — stepping into web development was one of those decisions that felt both scary and completely right at the same time. I’m a positive and curious person by nature, and I genuinely enjoy learning new things, especially when it means challenging myself and growing along the way.
-                Outside of my work, I try to keep a good balance in life. Training and yoga are important parts of my everyday routine, helping me stay focused, grounded and energized. I also love traveling, discovering new places and perspectives, and taking inspiration from environments that feel different from my own.
-            </p>
+
+            <div class="about-content" id="about-content">
+                <p class="note-text">
+                    I’m 37 and not afraid of making big life changes — stepping into web development was one of those decisions that felt both scary and completely right at the same time. I’m a positive and curious person by nature, and I genuinely enjoy learning new things, especially when it means challenging myself and growing along the way.
+
+                    Outside of my work, I try to keep a good balance in life. Training and yoga are important parts of my everyday routine, helping me stay focused, grounded and energized. I also love traveling, discovering new places and perspectives, and taking inspiration from environments that feel different from my own.
+                </p>
+            </div>
+
+            <button
+                class="about-toggle"
+                type="button"
+                aria-controls="about-content"
+                aria-expanded="false">
+                Read more
+            </button>
         </div>
+
 
         <div class="note note-blue">
             <h3 class="note-title">Experience</h3>

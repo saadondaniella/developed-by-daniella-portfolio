@@ -155,6 +155,15 @@ toggle?.addEventListener("click", () => {
   toggle.setAttribute("aria-expanded", expanded);
 });
 
+const aboutToggle = document.querySelector(".about-toggle");
+const aboutContent = document.querySelector(".about-content");
+
+aboutToggle?.addEventListener("click", () => {
+  const expanded = aboutContent.classList.toggle("is-expanded");
+  aboutToggle.textContent = expanded ? "Read less" : "Read more";
+  aboutToggle.setAttribute("aria-expanded", expanded);
+});
+
 const dialog = document.getElementById("cover-letter-dialog");
 const openBtn = document.querySelector(
   '[data-open-dialog="cover-letter-dialog"]'

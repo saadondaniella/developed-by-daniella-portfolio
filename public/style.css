@@ -76,7 +76,7 @@
 .hero-title {
   margin: 0 0 8px;
   font-family: "Abril Fatface", serif;
-  font-size: 2.8rem;
+  font-size: 2.5rem;
   line-height: 0.95;
   letter-spacing: -0.03em;
   position: relative;
@@ -725,4 +725,29 @@
   opacity: 1;
   transform: translateY(-1px);
   box-shadow: 0 16px 34px rgba(11, 11, 16, 0.12);
+}
+
+.about-toggle {
+  display: none;
+  margin-top: 10px;
+  border: 0;
+  background: transparent;
+  text-decoration: underline;
+  cursor: pointer;
+  font: inherit;
+}
+@media (max-width: 899px) {
+  .about-toggle {
+    display: inline-block;
+  }
+
+  .about-content {
+    max-height: 7em; /* ca 2–3 rader */
+    overflow: hidden;
+    transition: max-height 220ms ease;
+  }
+
+  .about-content.is-expanded {
+    max-height: 1000px;
+  }
 }

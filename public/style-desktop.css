@@ -91,14 +91,18 @@
   .education-grid .note {
     height: 100%;
   }
-
-  .projects-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 16px;
+  .about-toggle,
+  .experience-toggle {
+    display: none !important;
   }
 
-  .projects-toggle {
-    display: none;
+  .about-content {
+    max-height: none;
+    overflow: visible;
+  }
+
+  .experience-list li {
+    display: list-item;
   }
 
   .contact-grid {

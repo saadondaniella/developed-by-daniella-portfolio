@@ -23,11 +23,12 @@ $coverLetter = require __DIR__ . '/../data/cover-letter.php';
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title><?= e($site['name']); ?> • Portfolio</title>
     <meta name="description" content="Portfolio of <?= e($site['name']); ?> — web development, design and projects." />
-    <link rel="stylesheet" href="public/style.css?v=2026">
 
-    <link rel="stylesheet" href="public/style-header.css?v=2026" />
-    <link rel="stylesheet" href="public/style-desktop.css?v=2026" />
-    <link rel="stylesheet" href="public/contact-footer.css?v=2026" />
+    <link rel="stylesheet" href="public/style.css?v=202602191607" />
+    <link rel="stylesheet" href="public/style-header.css?v=202602191607" />
+    <link rel="stylesheet" href="public/contact-footer.css?v=202602191607" />
+    <link rel="stylesheet" href="public/style-desktop.css?v=202602191607" />
+
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

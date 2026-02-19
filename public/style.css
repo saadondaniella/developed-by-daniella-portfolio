@@ -202,13 +202,20 @@
   margin-top: 10px;
   border: 0;
   background: transparent;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  color: var(--blue);
   text-decoration: underline;
+  text-underline-offset: 2px;
   cursor: pointer;
   font: inherit;
+  padding: 0;
+  line-height: 1;
 }
 
 @media (max-width: 899px) {
-  .experience-toggle {
+  .js .experience-toggle {
     display: inline-block;
   }
 
@@ -338,14 +345,41 @@
 }
 
 /* =========================
-   PROJECTS (grid + "show more" in steps on mobile)
+   PROJECTS (mobile-first carousel + desktop 2-up)
    ========================= */
 
-.projects-grid {
-  display: grid;
-  gap: 14px;
+/* Wrapper (om du har .projects-carousel runt allt) */
+.projects-carousel {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
+/* VIEWPORT = det som scrollar (mobile + desktop) */
+.projects-viewport {
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+
+  /* lite luft så inte första/sista kortet klipps */
+  padding: 2px 2px 6px;
+}
+.projects-viewport::-webkit-scrollbar {
+  display: none;
+}
+
+/* TRACK = alltid flex (inte grid) */
+.projects-grid {
+  display: flex;
+  gap: 14px; /* mobile gap */
+}
+
+/* KORTEN – behåll din design */
 .project-card {
   display: block;
   padding: 18px;
@@ -355,15 +389,23 @@
   transition:
     transform 140ms ease,
     box-shadow 140ms ease;
+
+  scroll-snap-align: start;
 }
 
+/* Mobile-first: 1 kort i taget */
+.projects-grid .project-card {
+  flex: 0 0 85%;
+}
+
+/* Hover kan ligga kvar (syns mest desktop ändå) */
 .project-card:hover {
   transform: translateY(-2px);
   box-shadow: 0 18px 40px rgba(11, 11, 16, 0.1);
 }
 
 .project-title {
-  margin: 0 0 6px;
+  margin: 0 0 20px;
   font-size: 1.7rem;
   font-weight: 900;
   letter-spacing: -0.02em;
@@ -438,28 +480,104 @@
   box-shadow: 0 12px 28px rgba(11, 11, 16, 0.1);
 }
 
-.projects-toggle {
-  display: none;
-  margin-top: 10px;
-  border: 0;
-  background: transparent;
-  text-decoration: underline;
-  cursor: pointer;
-  font: inherit;
+/* Pilar under (mobile + desktop) */
+.projects-controls {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
 }
 
-/* Mobile: JS styr vilka cards som syns via .is-visible */
-@media (max-width: 899px) {
-  .projects-toggle {
-    display: inline-block;
+.projects-arrow {
+  height: 44px;
+  width: 44px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 12px 28px rgba(11, 11, 16, 0.1);
+  cursor: pointer;
+  font-size: 22px;
+  font-weight: 900;
+  display: grid;
+  place-items: center;
+  transition:
+    transform 140ms ease,
+    box-shadow 140ms ease,
+    opacity 140ms ease;
+}
+
+.projects-arrow:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 18px 44px rgba(11, 11, 16, 0.14);
+}
+
+.projects-arrow:disabled {
+  opacity: 0.35;
+  cursor: default;
+  transform: none;
+}
+
+.projects-controls {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+/* Progress container */
+.projects-progress {
+  flex: 1;
+  height: 5px;
+  background: rgba(11, 11, 16, 0.12);
+  /* border-radius: 999px; */
+  overflow: hidden;
+  position: relative;
+}
+
+/* Progress bar */
+.projects-progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 90, 31, 0.6),
+    rgba(183, 156, 255, 0.6),
+    rgba(47, 107, 255, 0.6)
+  );
+  transition: width 180ms ease;
+}
+
+/* Desktop: centrera till 70–80vw och visa 2 kort */
+@media (min-width: 900px) {
+  .projects-carousel {
+    width: min(80vw, 1100px);
+    margin: 0 auto;
+    gap: 20px;
+  }
+
+  .projects-grid {
+    align-items: stretch;
   }
 
   .projects-grid .project-card {
-    display: none;
+    flex: 0 0 calc((100% - 16px) / 2);
+    min-height: 400px; /* lite mer premium-höjd */
+    padding: 28px; /* mer luft än mobile */
+    display: flex;
+    flex-direction: column;
+    background: rgba(255, 255, 255, 0.58);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(11, 11, 16, 0.12);
   }
 
-  .projects-grid .project-card.is-visible {
-    display: block;
+  /* Mer luft mellan textdelarna */
+  .project-text {
+    margin-bottom: 18px;
+  }
+
+  /* Tryck ner knapparna */
+  .project-actions {
+    margin-top: auto;
+    padding-top: 18px;
   }
 }
 
@@ -467,28 +585,39 @@
    ABOUT (mobile read more)
    ========================= */
 
-.about-toggle {
+@media (max-width: 899px) {
+  .about-content {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 5; /* antal rader som syns */
+    overflow: hidden;
+  }
+
+  .about-content.is-expanded {
+    display: block;
+    -webkit-line-clamp: unset;
+  }
+}
+
+.toggle-link {
   display: none;
   margin-top: 10px;
   border: 0;
   background: transparent;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  color: var(--blue);
   text-decoration: underline;
+  text-underline-offset: 2px;
   cursor: pointer;
   font: inherit;
+  padding: 0;
+  line-height: 1;
 }
 
 @media (max-width: 899px) {
-  .about-toggle {
+  .js .toggle-link {
     display: inline-block;
-  }
-
-  .about-content {
-    max-height: 7em;
-    overflow: hidden;
-    transition: max-height 220ms ease;
-  }
-
-  .about-content.is-expanded {
-    max-height: 1000px;
   }
 }

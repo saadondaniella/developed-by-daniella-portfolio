@@ -62,17 +62,14 @@
 
             <div class="about-content" id="about-content">
                 <p class="note-text">
-                    I’m 37 and not afraid of making big life changes — stepping into web development was one of those decisions that felt both scary and completely right at the same time. I’m a positive and curious person by nature, and I genuinely enjoy learning new things, especially when it means challenging myself and growing along the way.
+                    I’m 37 and not afraid of making big life changes — stepping into web development was one of those decisions that felt both scary and completely right at the same time. I’m a positive and curious person by nature, and I genuinely enjoy learning new things, especially when it means challenging myself and growing along the way.<br><br>
 
-                    Outside of my work, I try to keep a good balance in life. Training and yoga are important parts of my everyday routine, helping me stay focused, grounded and energized. I also love traveling, discovering new places and perspectives, and taking inspiration from environments that feel different from my own.
+                    Outside of my studies, I try to keep a good balance in life. Training and yoga are important parts of my routine — I dedicate a lot of time to them because it’s what I genuinely enjoy and what makes me feel good.
+                    I also love traveling, discovering new places and perspectives, and taking inspiration from environments that feel different from my own.
                 </p>
             </div>
 
-            <button
-                class="about-toggle"
-                type="button"
-                aria-controls="about-content"
-                aria-expanded="false">
+            <button class="toggle-link about-toggle" type="button" aria-controls="about-content" aria-expanded="false">
                 Read more
             </button>
         </div>
@@ -95,15 +92,11 @@
                         rel="noreferrer">Read more about the education at IHM</a>
                 </p>
             </div>
-
-            <button
-                class="experience-toggle"
-                type="button"
-                aria-controls="experience-content"
-                aria-expanded="false">
+            <button class="toggle-link experience-toggle" type="button" aria-controls="experience-content" aria-expanded="false">
                 Read more
             </button>
         </div>
+
         <div class="note note-white">
             <h3 class="note-title">Documents</h3>
 
@@ -138,102 +131,109 @@
             <p class="block-sub">A few things I’ve built and deployed during my studies.</p>
         </div>
 
-        <div class="projects-grid" id="projects-content">
-            <?php foreach ($projects as $project): ?>
-                <div class="project-card">
-                    <h3 class="project-title"><?= e($project['name']); ?></h3>
+        <div class="projects-carousel" aria-label="School projects carousel">
 
-                    <p class="project-text">
-                        <?= e($project['description']); ?>
-                    </p>
+            <div class="projects-viewport">
+                <div class="projects-grid" id="projects-content" tabindex="0" aria-label="Projects list">
+                    <?php foreach ($projects as $project): ?>
+                        <div class="project-card">
+                            <h3 class="project-title"><?= e($project['name']); ?></h3>
 
-                    <span class="project-meta"><?= e($project['tech']); ?></span>
+                            <p class="project-text">
+                                <?= e($project['description']); ?>
+                            </p>
 
-                    <div class="project-actions">
-                        <a class="project-btn"
-                            href="<?= e($project['url']); ?>"
-                            target="_blank"
-                            rel="noreferrer">
-                            Website
-                        </a>
+                            <span class="project-meta"><?= e($project['tech']); ?></span>
 
-                        <a class="project-btn project-btn-secondary"
-                            href="<?= e($project['repo']); ?>"
-                            target="_blank"
-                            rel="noreferrer">
-                            Repository
-                        </a>
-                    </div>
+                            <div class="project-actions">
+                                <a class="project-btn"
+                                    href="<?= e($project['url']); ?>"
+                                    target="_blank"
+                                    rel="noreferrer">
+                                    Website
+                                </a>
+
+                                <a class="project-btn project-btn-secondary"
+                                    href="<?= e($project['repo']); ?>"
+                                    target="_blank"
+                                    rel="noreferrer">
+                                    Repository
+                                </a>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
                 </div>
-            <?php endforeach; ?>
-        </div>
-
-        <button
-            class="projects-toggle"
-            type="button"
-            aria-controls="projects-content"
-            aria-expanded="false">
-            Show more
-        </button>
-
-
-        <section class="block" id="contact">
-            <div class="block-head">
-                <h2 class="block-title">Contact</h2>
             </div>
 
-            <div class="contact-panel contact-panel-fancy">
-                <div class="contact-headline">
+            <div class="projects-controls">
+                <div class="projects-progress">
+                    <div class="projects-progress-bar"></div>
+                </div>
 
-                    <div class="contact-title-row">
-                        <!-- <p class="contact-big">How to find me</p> -->
-                        <!-- <span class="contact-status" aria-label="Availability status">
+                <button class="projects-arrow projects-arrow-prev" type="button">&larr;</button>
+                <button class="projects-arrow projects-arrow-next" type="button">&rarr;</button>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="block" id="contact">
+        <div class="block-head">
+            <h2 class="block-title">Contact</h2>
+        </div>
+
+        <div class="contact-panel contact-panel-fancy">
+            <div class="contact-headline">
+
+                <div class="contact-title-row">
+                    <!-- <p class="contact-big">How to find me</p> -->
+                    <!-- <span class="contact-status" aria-label="Availability status">
                             <span class="contact-status-dot" aria-hidden="true"></span>
                             Open to opportunities
                         </span> -->
+                </div>
+            </div>
+
+            <div class="contact-grid contact-grid-fancy">
+                <a class="contact-card contact-card-email contact-card-fancy" href="mailto:<?= e($site['email']); ?>">
+                    <div class="contact-card-top">
+                        <span class="contact-kicker">Email</span>
+                        <span class="contact-icon" aria-hidden="true">✉</span>
                     </div>
-                </div>
 
-                <div class="contact-grid contact-grid-fancy">
-                    <a class="contact-card contact-card-email contact-card-fancy" href="mailto:<?= e($site['email']); ?>">
-                        <div class="contact-card-top">
-                            <span class="contact-kicker">Email</span>
-                            <span class="contact-icon" aria-hidden="true">✉</span>
-                        </div>
+                    <span class="contact-main"><?= e($site['email']); ?></span>
+                    <span class="contact-cta">Write →</span>
+                </a>
 
-                        <span class="contact-main"><?= e($site['email']); ?></span>
-                        <span class="contact-cta">Write →</span>
-                    </a>
+                <a class="contact-card contact-card-linkedin contact-card-fancy" href="<?= e($site['linkedin']); ?>" target="_blank" rel="noreferrer">
+                    <div class="contact-card-top">
+                        <span class="contact-kicker">LinkedIn</span>
+                        <span class="contact-icon" aria-hidden="true">in</span>
+                    </div>
 
-                    <a class="contact-card contact-card-linkedin contact-card-fancy" href="<?= e($site['linkedin']); ?>" target="_blank" rel="noreferrer">
-                        <div class="contact-card-top">
-                            <span class="contact-kicker">LinkedIn</span>
-                            <span class="contact-icon" aria-hidden="true">in</span>
-                        </div>
+                    <span class="contact-main">Connect</span>
+                    <span class="contact-cta">Open →</span>
+                </a>
 
-                        <span class="contact-main">Connect</span>
-                        <span class="contact-cta">Open →</span>
-                    </a>
+                <a class="contact-card contact-card-github contact-card-fancy" href="<?= e($site['github']); ?>" target="_blank" rel="noreferrer">
+                    <div class="contact-card-top">
+                        <span class="contact-kicker">GitHub</span>
+                        <span class="contact-icon" aria-hidden="true">⌘</span>
+                    </div>
 
-                    <a class="contact-card contact-card-github contact-card-fancy" href="<?= e($site['github']); ?>" target="_blank" rel="noreferrer">
-                        <div class="contact-card-top">
-                            <span class="contact-kicker">GitHub</span>
-                            <span class="contact-icon" aria-hidden="true">⌘</span>
-                        </div>
-
-                        <span class="contact-main">See work</span>
-                        <span class="contact-cta">Open →</span>
-                    </a>
-                </div>
+                    <span class="contact-main">See work</span>
+                    <span class="contact-cta">Open →</span>
+                </a>
             </div>
+        </div>
 
-            </div>
-        </section>
+        </div>
+    </section>
 
-        <footer class="footer">
-            <p>© <?= e((string)date('Y')); ?> <?= e($site['name']); ?></p>
-            <button class="top" type="button">Top ↑</button>
-        </footer>
+    <footer class="footer">
+        <p>© <?= e((string)date('Y')); ?> <?= e($site['name']); ?></p>
+        <button class="top" type="button">Top ↑</button>
+    </footer>
 </main>
 
 <dialog class="doc-dialog" id="cover-letter-dialog">

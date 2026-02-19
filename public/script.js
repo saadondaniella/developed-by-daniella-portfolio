@@ -1,3 +1,5 @@
+document.documentElement.classList.add("js");
+
 const menuButton = document.querySelector(".menu-btn");
 const menu = document.querySelector(".menu");
 const topButton = document.querySelector(".top");
@@ -171,43 +173,85 @@ document.querySelectorAll("[data-close-dialog]").forEach((btn) => {
 });
 
 /* =========================
-   PROJECTS: SHOW MORE (2 at a time, mobile)
+   SCHOOL PROJECTS (carousel + progress)
    ========================= */
-const projectsContainer = document.getElementById("projects-content");
-const projectsToggle = document.querySelector(".projects-toggle");
+(function initProjectsCarousel() {
+  const viewport = document.querySelector(".projects-viewport");
+  const track = document.querySelector("#projects-content");
+  if (!viewport || !track) return;
 
-if (projectsContainer && projectsToggle) {
-  const projectCards = Array.from(
-    projectsContainer.querySelectorAll(".project-card"),
-  );
+  const prevBtn = document.querySelector(".projects-arrow-prev");
+  const nextBtn = document.querySelector(".projects-arrow-next");
+  if (!prevBtn || !nextBtn) return;
 
-  const STEP = 3;
-  let visibleCount = STEP;
+  const progressBar = document.querySelector(".projects-progress-bar");
 
-  // Om det finns 2 eller färre: göm knappen helt
-  if (projectCards.length <= STEP) {
-    projectsToggle.style.display = "none";
-    projectCards.forEach((card) => card.classList.add("is-visible"));
-  } else {
-    function updateProjects() {
-      projectCards.forEach((card, index) => {
-        card.classList.toggle("is-visible", index < visibleCount);
-      });
+  const cards = Array.from(track.querySelectorAll(".project-card"));
+  if (!cards.length) return;
 
-      const expanded = visibleCount >= projectCards.length;
-      projectsToggle.textContent = expanded ? "Show less" : "Show more";
-      projectsToggle.setAttribute("aria-expanded", String(expanded));
-    }
+  const isDesktop = () => window.matchMedia("(min-width: 900px)").matches;
 
-    projectsToggle.addEventListener("click", () => {
-      if (visibleCount >= projectCards.length) {
-        visibleCount = STEP; // reset
-      } else {
-        visibleCount += STEP; // visa 2 till
+  const getCurrentIndex = () => {
+    const left = viewport.scrollLeft;
+    let bestIndex = 0;
+    let bestDistance = Infinity;
+
+    for (let i = 0; i < cards.length; i++) {
+      const distance = Math.abs(cards[i].offsetLeft - left);
+      if (distance < bestDistance) {
+        bestDistance = distance;
+        bestIndex = i;
       }
-      updateProjects();
-    });
+    }
+    return bestIndex;
+  };
 
-    updateProjects();
-  }
-}
+  const scrollToIndex = (index) => {
+    const clamped = Math.max(0, Math.min(cards.length - 1, index));
+    viewport.scrollTo({
+      left: cards[clamped].offsetLeft,
+      behavior: "smooth",
+    });
+  };
+
+  const updateButtons = () => {
+    const index = getCurrentIndex();
+    prevBtn.disabled = index === 0;
+    nextBtn.disabled = index === cards.length - 1;
+  };
+
+  const updateProgress = () => {
+    if (!progressBar) return;
+
+    const maxScroll = viewport.scrollWidth - viewport.clientWidth;
+    const percent = maxScroll > 0 ? (viewport.scrollLeft / maxScroll) * 100 : 0;
+    progressBar.style.width = `${percent}%`;
+  };
+
+  const updateUI = () => {
+    updateButtons();
+    updateProgress();
+  };
+
+  prevBtn.addEventListener("click", () => {
+    scrollToIndex(getCurrentIndex() - 1);
+    window.setTimeout(updateUI, 220);
+  });
+
+  nextBtn.addEventListener("click", () => {
+    scrollToIndex(getCurrentIndex() + 1);
+    window.setTimeout(updateUI, 220);
+  });
+
+  viewport.addEventListener("scroll", () => {
+    window.requestAnimationFrame(updateUI);
+  });
+
+  window.addEventListener("resize", () => {
+    // Recalc after layout changes (desktop/mobile switch)
+    window.setTimeout(updateUI, 80);
+  });
+
+  // Init
+  updateUI();
+})();

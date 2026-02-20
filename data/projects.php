@@ -16,8 +16,10 @@ return [
         'name' => 'Yrgopelag - Hotel booking app',
         'url' => 'https://developedbydaniella.se/yrgopelag/',
         'repo' => 'https://github.com/saadondaniella/theWhiteLotus-yrgopelag',
-        'description' => 'A complex full-stack project where I built a hotel booking system, working with bookings, revenue and cost logic, API integration, databases, accessibility and structured PHP code.',
-        'tech' => 'PHP • SQL • HTML • CSS • DESKTOP ONLY',
+        'description' => 'A complex full-stack project where I built a hotel booking system for a fictional hotel concept.
+
+        The project included handling bookings, revenue and cost calculations, API integration, database management, accessibility considerations, and structured PHP code following best practices.',
+        'tech' => 'PHP • SQL • HTML • CSS • DESIGNED FOR DESKTOP',
     ],
 
     [
@@ -48,7 +50,9 @@ return [
         'name' => 'Some Teams',
         'url' => 'https://developedbydaniella.se/some-teams/',
         'repo' => 'https://github.com/saadondaniella/Some-teams',
-        'description' => 'My first PHP project, where I worked with structured data to display information about football teams on a simple website.',
+        'description' => 'My first PHP project and my first assignment, completed two months into the education. A simple desktop-designed website where I worked with structured data to display information about football teams.
+
+        This project gave me my first understanding of how to handle data in PHP and render it dynamically in HTML',
         'tech' => 'PHP • HTML • CSS',
     ],
 ];

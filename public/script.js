@@ -173,23 +173,35 @@ document.querySelectorAll("[data-close-dialog]").forEach((btn) => {
 });
 
 /* =========================
-   SCHOOL PROJECTS (carousel + progress)
+   SCHOOL PROJECTS (carousel + progress) – robust init
    ========================= */
-(function initProjectsCarousel() {
-  const viewport = document.querySelector(".projects-viewport");
-  const track = document.querySelector("#projects-content");
-  if (!viewport || !track) return;
+function initProjects() {
+  const section = document.querySelector("#projects");
+  if (!section) return;
 
-  const prevBtn = document.querySelector(".projects-arrow-prev");
-  const nextBtn = document.querySelector(".projects-arrow-next");
-  if (!prevBtn || !nextBtn) return;
+  const viewport = section.querySelector(".projects-viewport");
+  const track = section.querySelector("#projects-content");
+  const prevBtn = section.querySelector(
+    ".projects-controls .projects-arrow-prev",
+  );
+  const nextBtn = section.querySelector(
+    ".projects-controls .projects-arrow-next",
+  );
+  const progressBar = section.querySelector(".projects-progress-bar");
 
-  const progressBar = document.querySelector(".projects-progress-bar");
+  // Debug (kan tas bort sen)
+  if (!viewport || !track || !prevBtn || !nextBtn) {
+    console.warn("Projects carousel: saknar element", {
+      viewport: !!viewport,
+      track: !!track,
+      prevBtn: !!prevBtn,
+      nextBtn: !!nextBtn,
+    });
+    return;
+  }
 
   const cards = Array.from(track.querySelectorAll(".project-card"));
   if (!cards.length) return;
-
-  const isDesktop = () => window.matchMedia("(min-width: 900px)").matches;
 
   const getCurrentIndex = () => {
     const left = viewport.scrollLeft;
@@ -222,7 +234,6 @@ document.querySelectorAll("[data-close-dialog]").forEach((btn) => {
 
   const updateProgress = () => {
     if (!progressBar) return;
-
     const maxScroll = viewport.scrollWidth - viewport.clientWidth;
     const percent = maxScroll > 0 ? (viewport.scrollLeft / maxScroll) * 100 : 0;
     progressBar.style.width = `${percent}%`;
@@ -248,10 +259,14 @@ document.querySelectorAll("[data-close-dialog]").forEach((btn) => {
   });
 
   window.addEventListener("resize", () => {
-    // Recalc after layout changes (desktop/mobile switch)
     window.setTimeout(updateUI, 80);
   });
 
-  // Init
   updateUI();
-})();
+}
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initProjects);
+} else {
+  initProjects();
+}

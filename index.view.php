@@ -140,7 +140,7 @@
                             <h3 class="project-title"><?= e($project['name']); ?></h3>
 
                             <p class="project-text">
-                                <?= e($project['description']); ?>
+                                <?= nl2br(e($project['description'])); ?>
                             </p>
 
                             <span class="project-meta"><?= e($project['tech']); ?></span>
@@ -259,7 +259,7 @@
 </dialog>
 
 
-<script src="public/script.js"></script>
+<script src="public/script.js?v=202602192232" defer></script>
 </body>
 
 </html>

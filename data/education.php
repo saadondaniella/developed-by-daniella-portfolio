@@ -20,7 +20,7 @@ return [
         ['title' => 'Databases & Data Sources (15p)', 'status' => 'ongoing'],
         ['title' => 'Programming (70p)', 'status' => 'ongoing'],
         ['title' => 'Web Frameworks (60p)', 'status' => 'ongoing'],
-        ['title' => 'Project Methodology (30p)', 'status' => 'upcoming'],
+        ['title' => 'Project Methodology (30p)', 'status' => 'ongoing'],
         ['title' => 'Degree Project (30p)', 'status' => 'upcoming'],
         ['title' => 'Internship (Work-Based Learning) (135p)', 'status' => 'upcoming'],
     ],
